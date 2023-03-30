@@ -1,5 +1,6 @@
 package com.stage.biblioteca.controllers;
 
+import com.stage.biblioteca.dto.ClientiDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -8,7 +9,12 @@ import org.springframework.web.bind.annotation.*;
 public class ClientiController {
 
     @GetMapping("Stage/GET")
-    public String getall(){return "ciao getall";}
+    public String getall(){
+
+        ClientiDto clientiDto = new ClientiDto();
+        clientiDto.getNome();
+
+        return "ciao getall";}
 
     @GetMapping("Stage/GET-id")
     public String getid(){return "ciao getid";}
