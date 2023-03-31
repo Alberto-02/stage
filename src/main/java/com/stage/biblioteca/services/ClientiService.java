@@ -15,19 +15,19 @@ public class ClientiService {
 
     @Autowired
     ClientiRepo clientirepo;
-    public List<ClientiDto> findLibriAll(){
+    public List<ClientiDto> findClientiAll(){
 
         List<ClientiDto> responseFindAll = new ArrayList<>();
-        clientirepo.findAll().foreach(libro ->
-            responseFindAll.add( ClientiMapper.ISTANCE.todto(ClientiEntity));
+        clientirepo.findAll().forEach(cliente -> {
+            responseFindAll.add( ClientiMapper.INSTANCE.modelToDto(cliente));
         });
-        ClientiEntity ll = ClientiRepo.findBy( Integer.decode());
+//        ClientiEntity cc = ClientiRepo.findbyId(Integer.decode("1")).get();
         return responseFindAll;
     }
 
-    public ClientiDto findClientiNome(String nome){
-        List<>
-        return clientirepo
-    }
+//    public ClientiDto findClientiNome(String nome){
+//        List<>
+//        return clientirepo.
+//    }
 
 }

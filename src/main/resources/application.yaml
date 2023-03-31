@@ -1,8 +1,8 @@
 spring:
   driverClassName: org.mariadb.jdbc.Driver
   url: jdbc:mariadb//localhost:3306/biblioteca
-  username: alberto
-  password: alberto
+  username: pippo
+  password: pippo
 jpa:
   show-sql: true
   hibernate:
