@@ -1,9 +1,8 @@
 spring:
-  driverClassName: org.mariadb.jdbc.Driver
-  url: jdbc:mariadb//localhost:3306/biblioteca
-  username: pippo
-  password: pippo
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/biblioteca
+    username: pippo
+    password: pippo
 jpa:
   show-sql: true
-  hibernate:
-  ddl-auto: update
