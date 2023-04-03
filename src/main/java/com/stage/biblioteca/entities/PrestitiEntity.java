@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
  * @author Alberto
  */
 @Entity
-@Table(name = "PrestitiEntity")
+@Table(name = "prestiti")
 @NamedQueries({
         @NamedQuery(name = "PrestitiEntity.findAll", query = "SELECT p FROM PrestitiEntity p")})
 public class PrestitiEntity implements Serializable {

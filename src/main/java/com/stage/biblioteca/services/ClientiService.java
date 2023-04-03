@@ -11,23 +11,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ClientiService {
-
+public class ClientiService{
     @Autowired
     ClientiRepo clientirepo;
+    // GET ALL
     public List<ClientiDto> findClientiAll(){
 
         List<ClientiDto> responseFindAll = new ArrayList<>();
-        clientirepo.findAll().forEach(cliente -> {
+        clientirepo.findAll().forEach(cliente -> { System.out.println(cliente.getIdCliente());
             responseFindAll.add( ClientiMapper.INSTANCE.modelToDto(cliente));
         });
 //        ClientiEntity cc = ClientiRepo.findbyId(Integer.decode("1")).get();
         return responseFindAll;
     }
-
-//    public ClientiDto findClientiNome(String nome){
-//        List<>
-//        return clientirepo.
-//    }
+   //GET BY NOME
+    public ClientiDto findClientiNome(){
+        List<ClientiDto> responseFindNome = new ArrayList<>();
+        clientirepo.findAll().forEach(cliente -> { System.out.println(cliente.getIdCliente());
+            responseFindNome.add( ClientiMapper.INSTANCE.modelToDto(cliente));
+        });
+    }
 
 }

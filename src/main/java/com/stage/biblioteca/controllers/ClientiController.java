@@ -18,7 +18,8 @@ public class ClientiController {
     return clientiService.findClientiAll(); }
 
     @GetMapping("Stage/GET-id")
-    public String getid(){return "ciao getid";}
+    public String getid(){
+    return clientiService.findClientiNome(); }
 
     @PostMapping("Stage/GET-id")
     public String postid(){return "ciao postid";}

@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 public class LibriDto {
-    @Id
+
     private Integer idLibro;
     private String isbn;
     private String titolo;

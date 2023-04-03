@@ -20,9 +20,7 @@ import jakarta.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "ClientiEntity")
-@NamedQueries({
-        @NamedQuery(name = "ClientiEntity.findAll", query = "SELECT c FROM ClientiEntity c")})
+@Table(name = "clienti")
 public class ClientiEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

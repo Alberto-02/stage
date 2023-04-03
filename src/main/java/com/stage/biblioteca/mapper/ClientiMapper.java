@@ -7,8 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ClientiMapper {
-
     ClientiMapper INSTANCE = Mappers.getMapper(ClientiMapper.class);
     ClientiDto modelToDto(ClientiEntity clienti);
-    ClientiEntity dtoToModel(ClientiDto productDto);
+    ClientiEntity dtoToModel(ClientiDto clientiDto);
 }

@@ -19,7 +19,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "LibriEntity")
+@Table(name = "libri")
 @NamedQueries({
         @NamedQuery(name = "LibriEntity.findAll", query = "SELECT l FROM LibriEntity l")})
 public class LibriEntity implements Serializable {
