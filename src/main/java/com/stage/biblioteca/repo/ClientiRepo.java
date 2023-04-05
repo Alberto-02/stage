@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientiRepo extends JpaRepository<ClientiEntity,Integer> {
 
+ Optional<ClientiEntity> cercaCliente(String cognome);
 }

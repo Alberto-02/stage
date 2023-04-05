@@ -28,19 +28,44 @@ public class ClientiService{
     }
    //GET BY ID
     public Optional<ClientiEntity> getIdCliente(Integer idCliente){
-
      return clientirepo.findById(idCliente);
-
     }
 
+    //GET BY COGNOME
+    public ClientiDto cercaCliente(String cognome){
+        return clientirepo.cercaCliente(cognome);
+    }
     // POST AGGIUNGI CLIENTE
    public ClientiDto createCliente(ClientiDto clientiDto){
        ClientiEntity clienti = ClientiMapper.INSTANCE.dtoToModel(clientiDto);
        clienti = clientirepo.save(clienti);
        return ClientiMapper.INSTANCE.modelToDto(clienti);
    }
+   //PUT CLIENTE update
+    public ClientiDto updateCliente(Integer idCLiente, ClientiDto clientiDto){
+        Optional<ClientiDto> optionalClienti = clientirepo.findById(idCLiente);
+        if(optionalClienti.isEmpty()){
+            throw new Exception{
+                ("Cliente non trovato");
+            }
+        }
+
+        ClientiEntity clienti = ClientiMapper.INSTANCE.dtoToModel(clientiDto);
+        clienti = clientirepo.save(clienti);
+        return ClientiMapper.INSTANCE.modelToDto(clienti);
+
+    }
+   // DELETE CLIENTE
+    public ClientiDto deleteCliente(Integer idCliente, ClientiDto clientiDto){
+        Optional<ClientiDto> optionalCLienti = clientirepo.findById(idCliente);
+        if(optionalClienti.isEmpty()){
+            throw new Exception("Cliente non trovato")
+        }
 
 
+
+        return "Cliente eliminato"+idCliente;
+    }
 
 
 
