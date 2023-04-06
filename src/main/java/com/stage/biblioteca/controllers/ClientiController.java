@@ -30,7 +30,7 @@ public class ClientiController {
     return ResponseEntity.status(HttpStatus.OK).body(cl); }
 
     //GET BY COGNOME
-    @GetMapping
+    @GetMapping("Stage/cercaClienteCognome")
     public ResponseEntity<ClientiDto> cercaClienteCognome(@PathVariable(value = "cognome") String cognome, @RequestBody ClientiDto clientiDto){
     ClientiDto cl = clientiService.cercaClienteCognome(cognome);
     return ResponseEntity.status(HttpStatus.OK).body(cl);
@@ -48,9 +48,9 @@ public class ClientiController {
 
     }
 
-        //DELETE
-    @DeleteMapping("Stage/DELETE")
-    public ResponseEntity<String> deleteCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto){
+    //DELETE
+    @DeleteMapping("Stage/DELETE/{idCliente}")
+    public ResponseEntity<String> deleteCliente(@PathVariable(value = "idCliente") Integer idCliente){
     clientiService.deleteCliente(idCliente);
     return ResponseEntity.status(HttpStatus.OK).body("Cliente eliminato");}
 

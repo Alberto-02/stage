@@ -51,7 +51,7 @@ public class ClientiService{
        clienti = clientirepo.save(clienti);
        return ClientiMapper.INSTANCE.modelToDto(clienti);
    }
-   //PUT CLIENTE update
+   //PUT CLIENTE UPDATE
     public ClientiDto aggiornaCliente(Integer idCLiente, ClientiDto clientiDto){
         Optional<ClientiEntity> clienti = clientirepo.findById(idCLiente);
         if(!clienti.isPresent()){
