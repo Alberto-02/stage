@@ -17,4 +17,5 @@ public class ClientiDto {
     private Date dataNascita;
     private List<PrestitiEntity> PrestitiEntityList;
 
+
 }

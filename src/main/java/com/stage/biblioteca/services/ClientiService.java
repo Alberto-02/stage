@@ -1,6 +1,5 @@
 package com.stage.biblioteca.services;
 
-import ch.qos.logback.core.net.server.Client;
 import com.stage.biblioteca.mapper.ClientiMapper;
 import com.stage.biblioteca.dto.ClientiDto;
 import com.stage.biblioteca.entities.ClientiEntity;
@@ -23,17 +22,28 @@ public class ClientiService{
         clientirepo.findAll().forEach(cliente -> { System.out.println(cliente.getIdCliente());
             responseFindAll.add( ClientiMapper.INSTANCE.modelToDto(cliente));
         });
-//        ClientiEntity cc = ClientiRepo.findbyId(Integer.decode("1")).get();
         return responseFindAll;
     }
    //GET BY ID
-    public Optional<ClientiEntity> getIdCliente(Integer idCliente){
-     return clientirepo.findById(idCliente);
+    public ClientiDto getIdCliente(Integer idCliente){
+        Optional<ClientiEntity> clienti = clientirepo.findById(idCliente);
+        if(!clienti.isPresent()){
+            throw new RuntimeException("Cliente non trovato");
+        }
+        ClientiEntity clientidb = clienti.get();
+
+        return ClientiMapper.INSTANCE.modelToDto(clientidb);
     }
 
     //GET BY COGNOME
-    public ClientiDto cercaCliente(String cognome){
-        return clientirepo.cercaCliente(cognome);
+    public ClientiDto cercaClienteCognome(String cognome){
+        Optional<ClientiEntity> clienti = clientirepo.findByCognome(cognome);
+        if(!clienti.isPresent()){
+            throw new RuntimeException("Cliente non trovato");
+        }
+        ClientiEntity clientidb = clienti.get();
+
+        return ClientiMapper.INSTANCE.modelToDto(clientidb);
     }
     // POST AGGIUNGI CLIENTE
    public ClientiDto createCliente(ClientiDto clientiDto){
@@ -42,32 +52,25 @@ public class ClientiService{
        return ClientiMapper.INSTANCE.modelToDto(clienti);
    }
    //PUT CLIENTE update
-    public ClientiDto updateCliente(Integer idCLiente, ClientiDto clientiDto){
-        Optional<ClientiDto> optionalClienti = clientirepo.findById(idCLiente);
-        if(optionalClienti.isEmpty()){
-            throw new Exception{
-                ("Cliente non trovato");
-            }
+    public ClientiDto aggiornaCliente(Integer idCLiente, ClientiDto clientiDto){
+        Optional<ClientiEntity> clienti = clientirepo.findById(idCLiente);
+        if(!clienti.isPresent()){
+            throw new RuntimeException("Cliente non trovato");
         }
-
-        ClientiEntity clienti = ClientiMapper.INSTANCE.dtoToModel(clientiDto);
-        clienti = clientirepo.save(clienti);
-        return ClientiMapper.INSTANCE.modelToDto(clienti);
+        ClientiEntity clientidb = clienti.get();
+        clientidb = ClientiMapper.INSTANCE.dtoToModel(clientiDto);
+        clientidb.setIdCliente(idCLiente);
+        clientidb = clientirepo.save(clientidb);
+        return ClientiMapper.INSTANCE.modelToDto(clientidb);
 
     }
    // DELETE CLIENTE
-    public ClientiDto deleteCliente(Integer idCliente, ClientiDto clientiDto){
-        Optional<ClientiDto> optionalCLienti = clientirepo.findById(idCliente);
-        if(optionalClienti.isEmpty()){
-            throw new Exception("Cliente non trovato")
+    public void deleteCliente(Integer idCliente) {
+        Optional<ClientiEntity> clienti = clientirepo.findById(idCliente);
+        if (clienti.isEmpty()) {
+            throw new RuntimeException("Cliente non trovato");
         }
-
-
-
-        return "Cliente eliminato"+idCliente;
+        clientirepo.deleteById(idCliente);
     }
-
-
-
 
 }

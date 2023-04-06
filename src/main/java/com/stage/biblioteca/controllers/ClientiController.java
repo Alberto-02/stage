@@ -2,7 +2,6 @@ package com.stage.biblioteca.controllers;
 
 
 import com.stage.biblioteca.dto.ClientiDto;
-import com.stage.biblioteca.entities.ClientiEntity;
 import com.stage.biblioteca.services.ClientiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,14 +25,15 @@ public class ClientiController {
 
     //GET BY ID
     @GetMapping("Stage/findById/{idCliente}")
-    public ResponseEntity<Optional<ClientiEntity>> getIdCliente(@PathVariable(value = "idCliente") Integer idCliente){
-    Optional<ClientiEntity> cl = clientiService.getIdCliente(idCliente);
+    public ResponseEntity<ClientiDto> getIdCliente(@PathVariable(value = "idCliente") Integer idCliente){
+    ClientiDto cl = clientiService.getIdCliente(idCliente);
     return ResponseEntity.status(HttpStatus.OK).body(cl); }
 
     //GET BY COGNOME
     @GetMapping
-    public ClientiDto cercaCliente(@PathVariable(value = "cognome") String cognome){
-        return clientiService.cercaCliente(cognome);
+    public ResponseEntity<ClientiDto> cercaClienteCognome(@PathVariable(value = "cognome") String cognome, @RequestBody ClientiDto clientiDto){
+    ClientiDto cl = clientiService.cercaClienteCognome(cognome);
+    return ResponseEntity.status(HttpStatus.OK).body(cl);
     }
 
     //POST Crea Cliente
@@ -41,17 +41,18 @@ public class ClientiController {
     public ClientiDto createCliente(@RequestBody ClientiDto clientiDto){
     return clientiService.createCliente(clientiDto); }
 
-    //PUT Aggiorna Cliente
-    @PutMapping("Stage/PUT")
-    public ResponseEntity<Optional<ClientiDto>> updateCliente(@PathVariable(value = "idCliente") Integer idCliente){
-    Optional<ClientiEntity> cl = clientiService.getIdCliente(idCliente);
-    return ResponseEntity.status(HttpStatus.OK).body(cl);}
+    @PutMapping("Stage/Update")
+    public ResponseEntity<ClientiDto> aggiornaCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto) {
+    ClientiDto cl = clientiService.aggiornaCliente(idCliente, clientiDto);
+    return ResponseEntity.ok(cl);
 
-    //DELETE
+    }
+
+        //DELETE
     @DeleteMapping("Stage/DELETE")
-    public ResponseEntity<Optional<ClientiDto>> deleteCliente(@PathVariable(value = "idCliente") Integer idCliente){
-    Optional<ClientiEntity> cl = clientiService.getIdCliente(idCliente);
-    return ResponseEntity.status(HttpStatus.OK).body(cl);}
+    public ResponseEntity<String> deleteCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto){
+    clientiService.deleteCliente(idCliente);
+    return ResponseEntity.status(HttpStatus.OK).body("Cliente eliminato");}
 
 }
 
