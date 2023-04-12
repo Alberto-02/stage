@@ -1,10 +1,7 @@
 package com.stage.biblioteca.services;
 
-import com.stage.biblioteca.dto.ClientiDto;
 import com.stage.biblioteca.dto.LibriDto;
-import com.stage.biblioteca.entities.ClientiEntity;
 import com.stage.biblioteca.entities.LibriEntity;
-import com.stage.biblioteca.mapper.ClientiMapper;
 import com.stage.biblioteca.mapper.LibriMapper;
 import com.stage.biblioteca.repo.LibriRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +21,7 @@ public class LibriService {
 
         List<LibriDto> responseFindAll = new ArrayList<>();
         libriRepo.findAll().forEach(libri -> { System.out.println(libri.getIdLibro());
-            responseFindAll.add( ClientiMapper.INSTANCE.modelToDto(libri));
+            responseFindAll.add( LibriMapper.INSTANCE.modelToDto(libri));
         });
         return responseFindAll;
     }
@@ -34,7 +31,7 @@ public class LibriService {
         if(!libri.isPresent()){
             throw new RuntimeException("Libro non trovato");
         }
-        LibriEntity libridb = libridb.get();
+        LibriEntity libridb = libri.get();
 
         return LibriMapper.INSTANCE.modelToDto(libridb);
     }
@@ -45,7 +42,7 @@ public class LibriService {
         if(!libri.isPresent()){
             throw new RuntimeException("Libro non trovato");
         }
-        LibriEntity libridb = libridb.get();
+        LibriEntity libridb = libri.get();
 
         return LibriMapper.INSTANCE.modelToDto(libridb);
     }
@@ -62,18 +59,18 @@ public class LibriService {
         if(!libri.isPresent()){
             throw new RuntimeException("Libro non trovato");
         }
-        LibriEntity libridb = libridb.get();
+        LibriEntity libridb = libri.get();
         libridb = LibriMapper.INSTANCE.dtoToModel(libriDto);
         libridb.setIdLibro(idLibro);
         libridb = libriRepo.save(libridb);
         return LibriMapper.INSTANCE.modelToDto(libridb);
 
     }
-    // DELETE CLIENTE
+    // DELETE LIBRO
     public void deleteLibro(Integer idLibro) {
         Optional<LibriEntity> libri = libriRepo.findById(idLibro);
         if (libri.isEmpty()) {
-            throw new RuntimeException("Cliente non trovato");
+            throw new RuntimeException("Libro non trovato");
         }
         libriRepo.deleteById(idLibro);
     }

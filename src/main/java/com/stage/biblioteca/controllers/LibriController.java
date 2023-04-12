@@ -1,6 +1,6 @@
 package com.stage.biblioteca.controllers;
 
-import com.stage.biblioteca.dto.ClientiDto;
+
 import com.stage.biblioteca.dto.LibriDto;
 import com.stage.biblioteca.services.LibriService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +30,8 @@ public class LibriController {
 
     //GET BY ISBN
     @GetMapping("Stage/cercaLibroIsbn")
-    public ResponseEntity<LibriDto> cercaLibroIsbn(@PathVariable(value = "isbn") String isbn, @RequestBody LibriDto libriDto){
-        LibriDto ll = libriService.findByIsbn(isbn);
+    public ResponseEntity<LibriDto> findByIsbn(@PathVariable(value = "isbn") String isbn, @RequestBody LibriDto libriDto){
+        LibriDto ll = libriService.cercaLibroIsbn(isbn);
         return ResponseEntity.status(HttpStatus.OK).body(ll);
     }
 
