@@ -41,6 +41,7 @@ public class ClientiController {
     public ClientiDto createCliente(@RequestBody ClientiDto clientiDto){
     return clientiService.createCliente(clientiDto); }
 
+    //PUT Modifica Cliente
     @PutMapping("Stage/Update")
     public ResponseEntity<ClientiDto> aggiornaCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto) {
     ClientiDto cl = clientiService.aggiornaCliente(idCliente, clientiDto);
