@@ -19,7 +19,7 @@ public class ClientiController {
     ClientiService clientiService;
 
     //GET ALL
-    @GetMapping("Stage/findAll")
+    @GetMapping("Stage/findAllClienti")
     public List<ClientiDto> getall() {
     return clientiService.findClientiAll(); }
 
@@ -42,7 +42,7 @@ public class ClientiController {
     return clientiService.createCliente(clientiDto); }
 
     //PUT Modifica Cliente
-    @PutMapping("Stage/Update")
+    @PutMapping("Stage/UpdateCliente")
     public ResponseEntity<ClientiDto> aggiornaCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto) {
     ClientiDto cl = clientiService.aggiornaCliente(idCliente, clientiDto);
     return ResponseEntity.ok(cl);

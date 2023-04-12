@@ -46,7 +46,7 @@ public class ClientiService{
 
         return ClientiMapper.INSTANCE.modelToDto(clientidb);
     }
-    // POST AGGIUNGI CLIENTE
+    // POST CREA CLIENTE
    public ClientiDto createCliente(ClientiDto clientiDto){
        ClientiEntity clienti = ClientiMapper.INSTANCE.dtoToModel(clientiDto);
        clienti = clientirepo.save(clienti);

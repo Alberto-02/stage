@@ -2,6 +2,8 @@
 package com.stage.biblioteca.entities;
 
 import java.io.Serializable;
+import java.lang.String;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,13 +34,13 @@ public class PrestitiEntity implements Serializable {
     private Integer idPrestito;
     @Basic(optional = false)
     @Column(name = "data_inizio")
-    private int dataInizio;
+    private String dataInizio;
     @Basic(optional = false)
     @Column(name = "data_fine")
-    private int dataFine;
-    @Basic(optional = false)
+    private String dataFine;
+    @Basic(optional = true)
     @Column(name = "data_consegna")
-    private int dataConsegna;
+    private String dataConsegna;
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     @ManyToOne(optional = false)
     private ClientiEntity idCliente;
@@ -53,7 +55,7 @@ public class PrestitiEntity implements Serializable {
         this.idPrestito = idPrestito;
     }
 
-    public PrestitiEntity(Integer idPrestito, int dataInizio, int dataFine, int dataConsegna) {
+    public PrestitiEntity(Integer idPrestito, String dataInizio, String dataFine, String dataConsegna) {
         this.idPrestito = idPrestito;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
@@ -68,27 +70,27 @@ public class PrestitiEntity implements Serializable {
         this.idPrestito = idPrestito;
     }
 
-    public int getDataInizio() {
+    public String getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataInizio(int dataInizio) {
+    public void setDataInizio(String dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public int getDataFine() {
+    public String getDataFine() {
         return dataFine;
     }
 
-    public void setDataFine(int dataFine) {
+    public void setDataFine(String dataFine) {
         this.dataFine = dataFine;
     }
 
-    public int getDataConsegna() {
+    public String getDataConsegna() {
         return dataConsegna;
     }
 
-    public void setDataConsegna(int dataConsegna) {
+    public void setDataConsegna(String dataConsegna) {
         this.dataConsegna = dataConsegna;
     }
 

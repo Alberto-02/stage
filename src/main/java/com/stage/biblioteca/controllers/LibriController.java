@@ -18,7 +18,7 @@ public class LibriController {
     LibriService libriService;
 
     //GET ALL
-    @GetMapping("Stage/findAll")
+    @GetMapping("Stage/findAllLibro")
     public List<LibriDto> findLibriAll() {
         return libriService.findLibriAll(); }
 
@@ -36,12 +36,12 @@ public class LibriController {
     }
 
     //POST Crea Libro
-    @PostMapping("Stage/aggiungiCliente")
+    @PostMapping("Stage/aggiungiLibro")
     public LibriDto createLibro(@RequestBody LibriDto libriDto){
         return libriService.createLibro(libriDto); }
 
     //PUT Modifica Libro
-    @PutMapping("Stage/Update")
+    @PutMapping("Stage/UpdateLibro")
     public ResponseEntity<LibriDto> aggiornaLibro(@PathVariable(value = "idLibro") Integer idLibro, @RequestBody LibriDto libriDto) {
         LibriDto cl = libriService.aggiornaLibro(idLibro, libriDto);
         return ResponseEntity.ok(cl);
