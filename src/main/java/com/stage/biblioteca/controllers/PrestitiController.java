@@ -23,7 +23,7 @@ public class PrestitiController {
     //GET ALL
     @GetMapping("Stage/findAllPrestiti")
     public List<PrestitiDto> getAllPrestiti(){
-        return prestitiService.findPrestitiAll();
+    return prestitiService.findPrestitiAll();
     }
 
     //LIBRI DISPONIBILI

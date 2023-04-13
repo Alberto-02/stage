@@ -19,11 +19,11 @@ public class ClientiService{
     // GET ALL
     public List<ClientiDto> findClientiAll(){
 
-        List<ClientiDto> responseFindAll = new ArrayList<>();
-        clientirepo.findAll().forEach(cliente -> { System.out.println(cliente.getIdCliente());
-            responseFindAll.add( ClientiMapper.INSTANCE.modelToDto(cliente));
+        List<ClientiDto> responseFindAllClienti = new ArrayList<>();
+        clientirepo.findAll().forEach(cliente -> {
+            responseFindAllClienti.add( ClientiMapper.INSTANCE.modelToDto(cliente));
         });
-        return responseFindAll;
+        return responseFindAllClienti;
     }
    //GET BY ID
     public ClientiDto getIdCliente(Integer idCliente){
@@ -69,9 +69,9 @@ public class ClientiService{
     public void deleteCliente(Integer idCliente) {
         Optional<ClientiEntity> clienti = clientirepo.findById(idCliente);
         if (clienti.isEmpty()) {
-            throw new RuntimeException("Cliente non trovato");
+            clientirepo.delete(clienti.get());
+        }else{
+            throw new RuntimeException("Libro non trovato");
         }
-        clientirepo.deleteById(idCliente);
     }
-
 }

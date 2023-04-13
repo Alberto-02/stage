@@ -17,7 +17,7 @@ public class PrestitiService {
     //GET ALL
     public List<PrestitiDto> findPrestitiAll(){
         List<PrestitiDto> responseFindAll = new ArrayList<>();
-        prestitiRepo.findAll().forEach(prestiti -> {System.out.println(prestiti.getIdPrestito());
+        prestitiRepo.findAll().forEach(prestiti -> {
         responseFindAll.add(PrestitiMapper.INSTANCE.modelToDto(prestiti));
         });
         return responseFindAll;

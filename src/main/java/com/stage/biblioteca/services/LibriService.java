@@ -19,11 +19,11 @@ public class LibriService {
     // GET ALL
     public List<LibriDto> findLibriAll(){
 
-        List<LibriDto> responseFindAll = new ArrayList<>();
-        libriRepo.findAll().forEach(libri -> { System.out.println(libri.getIdLibro());
-            responseFindAll.add( LibriMapper.INSTANCE.modelToDto(libri));
+        List<LibriDto> responseFindAllLibri = new ArrayList<>();
+        libriRepo.findAll().forEach(libri -> {
+            responseFindAllLibri.add( LibriMapper.INSTANCE.modelToDto(libri));
         });
-        return responseFindAll;
+        return responseFindAllLibri;
     }
     //GET BY ID
     public LibriDto getIdLibro(Integer idLibro){
@@ -39,15 +39,14 @@ public class LibriService {
     //GET BY ISBN
     public LibriDto cercaLibroIsbn(String isbn){
         Optional<LibriEntity> libri = libriRepo.findByIsbn(isbn);
-        if(!libri.isPresent()){
-            throw new RuntimeException("Libro non trovato");
+        LibriDto libriDto = new LibriDto();
+        if(libri.isPresent()){
+            libriDto = LibriMapper.INSTANCE.modelToDto(libri.get());
         }
-        LibriEntity libridb = libri.get();
-
-        return LibriMapper.INSTANCE.modelToDto(libridb);
+        return libriDto;
     }
 
-    // POST AGGIUNGI LIBRO
+    // POST CREA LIBRO
     public LibriDto createLibro(LibriDto libriDto){
         LibriEntity libri = LibriMapper.INSTANCE.dtoToModel(libriDto);
         libri = libriRepo.save(libri);
@@ -69,9 +68,11 @@ public class LibriService {
     // DELETE LIBRO
     public void deleteLibro(Integer idLibro) {
         Optional<LibriEntity> libri = libriRepo.findById(idLibro);
-        if (libri.isEmpty()) {
+        if (libri.isPresent()) {
+            libriRepo.delete(libri.get());
+        }
+        else{
             throw new RuntimeException("Libro non trovato");
         }
-        libriRepo.deleteById(idLibro);
     }
 }

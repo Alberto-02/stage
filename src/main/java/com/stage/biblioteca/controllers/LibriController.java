@@ -20,19 +20,20 @@ public class LibriController {
     //GET ALL
     @GetMapping("Stage/findAllLibro")
     public List<LibriDto> findLibriAll() {
-        return libriService.findLibriAll(); }
+    return libriService.findLibriAll();
+    }
 
     //GET BY ID
-    @GetMapping("Stage/findById/{idLibro}")
+    @GetMapping("Stage/findByIdLibro/{idLibro}")
     public ResponseEntity<LibriDto> getIdLibro(@PathVariable(value = "idLibro") Integer idLibro){
         LibriDto ll = libriService.getIdLibro(idLibro);
         return ResponseEntity.status(HttpStatus.OK).body(ll); }
 
     //GET BY ISBN
     @GetMapping("Stage/cercaLibroIsbn")
-    public ResponseEntity<LibriDto> findByIsbn(@PathVariable(value = "isbn") String isbn, @RequestBody LibriDto libriDto){
-        LibriDto ll = libriService.cercaLibroIsbn(isbn);
-        return ResponseEntity.status(HttpStatus.OK).body(ll);
+    public LibriDto findByIsbn(@RequestParam String isbn){
+
+        return libriService.cercaLibroIsbn(isbn);
     }
 
     //POST Crea Libro
@@ -40,8 +41,8 @@ public class LibriController {
     public LibriDto createLibro(@RequestBody LibriDto libriDto){
         return libriService.createLibro(libriDto); }
 
-    //PUT Modifica Libro
-    @PutMapping("Stage/UpdateLibro")
+    //PUT Aggiorna Libro
+    @PutMapping("Stage/UpdateLibro/{idLibro}")
     public ResponseEntity<LibriDto> aggiornaLibro(@PathVariable(value = "idLibro") Integer idLibro, @RequestBody LibriDto libriDto) {
         LibriDto cl = libriService.aggiornaLibro(idLibro, libriDto);
         return ResponseEntity.ok(cl);
@@ -49,9 +50,8 @@ public class LibriController {
     }
 
     //DELETE
-    @DeleteMapping("Stage/DELETE/{idLibro}")
-    public ResponseEntity<String> deleteLibro(@PathVariable(value = "idLibro") Integer idLibro){
+    @DeleteMapping("Stage/DeleteLibro/{idLibro}")
+    public void deleteLibro(@PathVariable(value = "idLibro") Integer idLibro){
         libriService.deleteLibro(idLibro);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente eliminato");}
-
+        }
 }

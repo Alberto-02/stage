@@ -20,11 +20,11 @@ public class ClientiController {
 
     //GET ALL
     @GetMapping("Stage/findAllClienti")
-    public List<ClientiDto> getall() {
+    public List<ClientiDto> findAllClienti() {
     return clientiService.findClientiAll(); }
 
     //GET BY ID
-    @GetMapping("Stage/findById/{idCliente}")
+    @GetMapping("Stage/findByIdCliente/{idCliente}")
     public ResponseEntity<ClientiDto> getIdCliente(@PathVariable(value = "idCliente") Integer idCliente){
     ClientiDto cl = clientiService.getIdCliente(idCliente);
     return ResponseEntity.status(HttpStatus.OK).body(cl); }
@@ -42,7 +42,7 @@ public class ClientiController {
     return clientiService.createCliente(clientiDto); }
 
     //PUT Modifica Cliente
-    @PutMapping("Stage/UpdateCliente")
+    @PutMapping("Stage/UpdateCliente/{idCliente}")
     public ResponseEntity<ClientiDto> aggiornaCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto) {
     ClientiDto cl = clientiService.aggiornaCliente(idCliente, clientiDto);
     return ResponseEntity.ok(cl);
@@ -50,7 +50,7 @@ public class ClientiController {
     }
 
     //DELETE
-    @DeleteMapping("Stage/DELETE/{idCliente}")
+    @DeleteMapping("Stage/DeleteCliente/{idCliente}")
     public ResponseEntity<String> deleteCliente(@PathVariable(value = "idCliente") Integer idCliente){
     clientiService.deleteCliente(idCliente);
     return ResponseEntity.status(HttpStatus.OK).body("Cliente eliminato");}

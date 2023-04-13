@@ -3,7 +3,6 @@ package com.stage.biblioteca.mapper;
 import com.stage.biblioteca.dto.LibriDto;
 import com.stage.biblioteca.entities.LibriEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
