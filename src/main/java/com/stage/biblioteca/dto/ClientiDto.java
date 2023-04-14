@@ -14,5 +14,4 @@ public class ClientiDto {
     private String email;
     private String telefono;
     private Date dataNascita;
-    private List<PrestitiDto> prestitiDtos;
 }

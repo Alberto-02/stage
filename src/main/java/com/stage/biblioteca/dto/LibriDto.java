@@ -14,5 +14,5 @@ public class LibriDto {
     private String titolo;
     private String autore;
     private String anno;
-    private Date genere;
+    private String genere;
 }
