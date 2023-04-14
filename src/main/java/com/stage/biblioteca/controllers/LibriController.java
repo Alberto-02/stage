@@ -26,32 +26,30 @@ public class LibriController {
     //GET BY ID
     @GetMapping("Stage/findByIdLibro/{idLibro}")
     public ResponseEntity<LibriDto> getIdLibro(@PathVariable(value = "idLibro") Integer idLibro){
-        LibriDto ll = libriService.getIdLibro(idLibro);
-        return ResponseEntity.status(HttpStatus.OK).body(ll); }
+    LibriDto ll = libriService.getIdLibro(idLibro);
+    return ResponseEntity.status(HttpStatus.OK).body(ll); }
 
     //GET BY ISBN
     @GetMapping("Stage/cercaLibroIsbn")
     public LibriDto findByIsbn(@RequestParam String isbn){
-
         return libriService.cercaLibroIsbn(isbn);
     }
 
     //POST Crea Libro
     @PostMapping("Stage/aggiungiLibro")
     public LibriDto createLibro(@RequestBody LibriDto libriDto){
-        return libriService.createLibro(libriDto); }
+    return libriService.createLibro(libriDto); }
 
     //PUT Aggiorna Libro
     @PutMapping("Stage/UpdateLibro/{idLibro}")
     public ResponseEntity<LibriDto> aggiornaLibro(@PathVariable(value = "idLibro") Integer idLibro, @RequestBody LibriDto libriDto) {
-        LibriDto cl = libriService.aggiornaLibro(idLibro, libriDto);
-        return ResponseEntity.ok(cl);
-
+    LibriDto ll = libriService.aggiornaLibro(idLibro, libriDto);
+    return ResponseEntity.ok(ll);
     }
 
     //DELETE
     @DeleteMapping("Stage/DeleteLibro/{idLibro}")
     public void deleteLibro(@PathVariable(value = "idLibro") Integer idLibro){
-        libriService.deleteLibro(idLibro);
-        }
+    libriService.deleteLibro(idLibro);
+    }
 }

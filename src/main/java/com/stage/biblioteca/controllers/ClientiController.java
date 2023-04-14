@@ -21,7 +21,8 @@ public class ClientiController {
     //GET ALL
     @GetMapping("Stage/findAllClienti")
     public List<ClientiDto> findAllClienti() {
-    return clientiService.findClientiAll(); }
+    return clientiService.findClientiAll();
+    }
 
     //GET BY ID
     @GetMapping("Stage/findByIdCliente/{idCliente}")
@@ -30,10 +31,9 @@ public class ClientiController {
     return ResponseEntity.status(HttpStatus.OK).body(cl); }
 
     //GET BY COGNOME
-    @GetMapping("Stage/cercaClienteCognome")
-    public ResponseEntity<ClientiDto> cercaClienteCognome(@PathVariable(value = "cognome") String cognome, @RequestBody ClientiDto clientiDto){
-    ClientiDto cl = clientiService.cercaClienteCognome(cognome);
-    return ResponseEntity.status(HttpStatus.OK).body(cl);
+    @GetMapping("Stage/cercaCliente")
+    public ClientiDto cercaClienteCognome(@RequestParam String cognome){
+    return clientiService.cercaClienteCognome(cognome);
     }
 
     //POST Crea Cliente
@@ -41,19 +41,17 @@ public class ClientiController {
     public ClientiDto createCliente(@RequestBody ClientiDto clientiDto){
     return clientiService.createCliente(clientiDto); }
 
-    //PUT Modifica Cliente
+    //PUT Aggiorna Cliente
     @PutMapping("Stage/UpdateCliente/{idCliente}")
     public ResponseEntity<ClientiDto> aggiornaCliente(@PathVariable(value = "idCliente") Integer idCliente, @RequestBody ClientiDto clientiDto) {
     ClientiDto cl = clientiService.aggiornaCliente(idCliente, clientiDto);
     return ResponseEntity.ok(cl);
-
     }
 
     //DELETE
     @DeleteMapping("Stage/DeleteCliente/{idCliente}")
-    public ResponseEntity<String> deleteCliente(@PathVariable(value = "idCliente") Integer idCliente){
+    public void deleteCliente(@PathVariable(value = "idCliente") Integer idCliente) {
     clientiService.deleteCliente(idCliente);
-    return ResponseEntity.status(HttpStatus.OK).body("Cliente eliminato");}
-
+    }
 }
 

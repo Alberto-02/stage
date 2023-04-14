@@ -18,10 +18,9 @@ public class ClientiService{
 
     // GET ALL
     public List<ClientiDto> findClientiAll(){
-
         List<ClientiDto> responseFindAllClienti = new ArrayList<>();
-        clientirepo.findAll().forEach(cliente -> {
-            responseFindAllClienti.add( ClientiMapper.INSTANCE.modelToDto(cliente));
+        clientirepo.findAll().forEach(clienti -> {
+            responseFindAllClienti.add( ClientiMapper.INSTANCE.modelToDto(clienti));
         });
         return responseFindAllClienti;
     }
@@ -39,12 +38,11 @@ public class ClientiService{
     //GET BY COGNOME
     public ClientiDto cercaClienteCognome(String cognome){
         Optional<ClientiEntity> clienti = clientirepo.findByCognome(cognome);
-        if(!clienti.isPresent()){
-            throw new RuntimeException("Cliente non trovato");
+        ClientiDto clientiDto = new ClientiDto();
+        if(clienti.isPresent()){
+           clientiDto = ClientiMapper.INSTANCE.modelToDto(clienti.get());
         }
-        ClientiEntity clientidb = clienti.get();
-
-        return ClientiMapper.INSTANCE.modelToDto(clientidb);
+        return clientiDto;
     }
     // POST CREA CLIENTE
    public ClientiDto createCliente(ClientiDto clientiDto){
@@ -71,7 +69,7 @@ public class ClientiService{
         if (clienti.isEmpty()) {
             clientirepo.delete(clienti.get());
         }else{
-            throw new RuntimeException("Libro non trovato");
+            throw new RuntimeException("Cliente non trovato");
         }
     }
 }

@@ -18,7 +18,6 @@ public class LibriService {
 
     // GET ALL
     public List<LibriDto> findLibriAll(){
-
         List<LibriDto> responseFindAllLibri = new ArrayList<>();
         libriRepo.findAll().forEach(libri -> {
             responseFindAllLibri.add( LibriMapper.INSTANCE.modelToDto(libri));
