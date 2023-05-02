@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://MariaDB:3306/biblio
+    url: jdbc:mariadb://mariadb:3306/biblio
     username: root
     password: pippo
   jpa:
